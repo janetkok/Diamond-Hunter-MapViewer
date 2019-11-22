@@ -1,13 +1,13 @@
 package com.neet.DiamondHunter.MapViewer;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
+
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 /**
  * MapDrawer is responsible for everything related to manipulating
@@ -22,6 +22,7 @@ public class MapDrawer {
     private GraphicsContext graphicsContext;
     private Image tile;
     private Image itemSprite;
+    private Image diamondSprite;
 
     private int tileSize;
     private int[][] map;
@@ -42,6 +43,7 @@ public class MapDrawer {
         this.tileSize = 16;
         this.tile = new Image("/Tilesets/testtileset.gif");
         this.itemSprite = new Image("/Sprites/items.gif");
+        this.diamondSprite = new Image("/Sprites/diamond.gif");
         this.isAxeHighlighted = false;
         this.isBoatHighlighted = false;
 
@@ -113,7 +115,60 @@ public class MapDrawer {
             graphicsContext.strokeRect(axeX * tileSize, axeY * tileSize, 16, 16);
         }
     }
-    
+
+    /**
+     * Draw out all the diamonds on the map.
+     */
+    public void drawDiamonds() {
+        //Draw the diamonds
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (20 * tileSize), (20 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (36 * tileSize), (12 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (4 * tileSize), (28 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (34 * tileSize), (4 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (19 * tileSize), (28 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (26 * tileSize), (35 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (36 * tileSize), (38 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (28 * tileSize), (27 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (30 * tileSize), (20 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (25 * tileSize), (14 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (21 * tileSize), (4 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (14 * tileSize), (9 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (3 * tileSize), (4 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (14 * tileSize), (20 * tileSize), tileSize, tileSize);
+
+        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+                (20 * tileSize), (13 * tileSize), tileSize, tileSize);
+
+    }
+
+
     /**
      * Setter for isAxeHighlighted
      * Set Axe to be highlighted
