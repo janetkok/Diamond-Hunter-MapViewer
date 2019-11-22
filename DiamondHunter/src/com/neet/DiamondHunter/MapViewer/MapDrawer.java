@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 /**
  * MapDrawer is responsible for everything related to manipulating
@@ -20,11 +21,15 @@ public class MapDrawer {
     private Canvas canvas;
     private GraphicsContext graphicsContext;
     private Image tile;
+    private Image itemSprite;
 
     private int tileSize;
     private int[][] map;
     private int mapWidth;
     private int mapHeight;
+    private boolean isAxeHighlighted;
+    private boolean isBoatHighlighted;
+
 
     /**
      * Constructor for MapDrawer
@@ -36,7 +41,9 @@ public class MapDrawer {
         this.graphicsContext = canvas.getGraphicsContext2D();
         this.tileSize = 16;
         this.tile = new Image("/Tilesets/testtileset.gif");
-
+        this.itemSprite = new Image("/Sprites/items.gif");
+        this.isAxeHighlighted = false;
+        this.isBoatHighlighted = false;
 
         try {
             InputStream in = getClass().getResourceAsStream(MAP_URL); //read map file
@@ -80,5 +87,51 @@ public class MapDrawer {
         }
     }
 
+    /**
+     * Draw out the usable items boat and axe on the given coordinates.
+     *
+     * @param boatX X coordinate for the boat
+     * @param boatY Y coordinate for the boat
+     * @param axeX  X coordinate for the axe
+     * @param axeY  Y coordinate for the axe
+     */
+    public void drawItems(int boatX, int boatY, int axeX, int axeY) {
+        //Draw the axe
+        graphicsContext.drawImage(itemSprite, 0, 16, tileSize, tileSize,
+                (boatX * tileSize), (boatY * tileSize), tileSize, tileSize);
+
+        //Draw the boat
+        graphicsContext.drawImage(itemSprite, 16, 16, tileSize, tileSize,
+                (axeX * tileSize), (axeY * tileSize), tileSize, tileSize);
+
+        graphicsContext.setStroke(Color.BLACK);
+        if (isBoatHighlighted) {
+            graphicsContext.strokeRect(boatX * tileSize, boatY * tileSize, 16, 16);
+
+        }
+        if (isAxeHighlighted) {
+            graphicsContext.strokeRect(axeX * tileSize, axeY * tileSize, 16, 16);
+        }
+    }
+    
+    /**
+     * Setter for isAxeHighlighted
+     * Set Axe to be highlighted
+     *
+     * @param highlight true to highlight, false to de-highlight
+     */
+    public void setAxeHighlighted(boolean highlight) {
+        this.isAxeHighlighted = highlight;
+    }
+
+    /**
+     * Setter for isBoatHighlighted
+     * Set boat to be highlighted
+     *
+     * @param highlight true to highlight, false to de-highlight
+     */
+    public void setBoatHighlighted(boolean highlight) {
+        this.isBoatHighlighted = highlight;
+    }
 
 }
