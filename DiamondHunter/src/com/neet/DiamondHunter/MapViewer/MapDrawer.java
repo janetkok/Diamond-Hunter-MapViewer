@@ -1,13 +1,13 @@
 package com.neet.DiamondHunter.MapViewer;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * MapDrawer is responsible for everything related to manipulating
@@ -22,6 +22,7 @@ public class MapDrawer {
     private GraphicsContext graphicsContext;
     private Image tile;
     private Image itemSprite;
+    private Image avatarSprite;
     private Image diamondSprite;
 
     private int tileSize;
@@ -43,6 +44,7 @@ public class MapDrawer {
         this.tileSize = 16;
         this.tile = new Image("/Tilesets/testtileset.gif");
         this.itemSprite = new Image("/Sprites/items.gif");
+        this.avatarSprite = new Image("/Sprites/playersprites.gif");
         this.diamondSprite = new Image("/Sprites/diamond.gif");
         this.isAxeHighlighted = false;
         this.isBoatHighlighted = false;
@@ -117,6 +119,15 @@ public class MapDrawer {
     }
 
     /**
+     * Draw out the sprite/avatar for the playable character of the game on the map
+     */
+    public void drawAvatar() {
+        //Draw the avatar
+        graphicsContext.drawImage(avatarSprite, 0, 0, tileSize, tileSize,
+                (17 * tileSize), (17 * tileSize), tileSize, tileSize);
+    }
+
+    /**
      * Draw out all the diamonds on the map.
      */
     public void drawDiamonds() {
@@ -170,6 +181,17 @@ public class MapDrawer {
 
 
     /**
+     * Check if axe and boat can be placed
+     *
+     * @param x x coordinates
+     * @param y y coordinates
+     * @return boolean value indicating if the tile is clickable
+     */
+    public boolean isClickable(int x, int y) {
+        return map[y][x] < 20;
+    }
+
+    /**
      * Setter for isAxeHighlighted
      * Set Axe to be highlighted
      *
@@ -189,4 +211,15 @@ public class MapDrawer {
         this.isBoatHighlighted = highlight;
     }
 
+    /**
+     * Draw a box around current cursor location on the map
+     * to highlight your current cursor location on the map,
+     * and also show each tile's boundaries for better usability.
+     * @param xCo Current cursor X coordinates
+     * @param yCo Current cursor Y coordinates
+     */
+    public void drawCursorHighlight(int xCo, int yCo) {
+        graphicsContext.setStroke(Color.CORAL);
+        graphicsContext.strokeRect(xCo * 16, yCo * 16, 16, 16);
+    }
 }
