@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - MapViewer",
+            "request": "launch",
+            "mainClass": "com.neet.DiamondHunter.MapViewer.MapViewer",
+            "projectName": "Diamond Hunter"
+        }
+    ]
+}
