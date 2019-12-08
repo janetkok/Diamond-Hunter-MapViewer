@@ -27,7 +27,7 @@
     <Button id="btnReset" layoutX="264.0" layoutY="652.0" mnemonicParsing="false" 
             prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/default.png');"/>
 
-    <Button layoutX="396.0" layoutY="652.0" mnemonicParsing="false" prefHeight="100.0"
+    <Button layoutX="396.0" layoutY="652.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0"
             prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/undo.png');"/>
 
     <Button id="btnInfo" layoutX="526.0" layoutY="652.0" mnemonicParsing="false" 

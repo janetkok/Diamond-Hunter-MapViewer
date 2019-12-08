@@ -41,12 +41,14 @@ public class MapViewerController {
     private int curMouseY;
 
     private int[] coordinates = new int[4];
+    private ArrayList<int[]> coordinateHistory;
 
     /**
      * Initialize function, meant for fxml loader to initialize the controller
      */
     public void initialize() {
         this.tileMap = new MapDrawer(canvas);
+        this.coordinateHistory = new ArrayList<>();
         readCoordinates();
         render();
     }
@@ -97,6 +99,7 @@ public class MapViewerController {
                 coordinates[0] = xCo;
                 coordinates[1] = yCo;
                 System.out.println(coordinates[0] + " " + coordinates[1] + " " + coordinates[2] + " " + coordinates[3]);
+                saveNewCoordinates();
                 render();
             }
 
@@ -104,6 +107,7 @@ public class MapViewerController {
                 coordinates[2] = xCo;
                 coordinates[3] = yCo;
                 System.out.println(coordinates[0] + " " + coordinates[1] + " " + coordinates[2] + " " + coordinates[3]);
+                saveNewCoordinates();
                 render();
             }
         } else {
@@ -118,6 +122,36 @@ public class MapViewerController {
 
     }
 
+
+
+    /**
+     * Display an alert box with the instruction for the MapViewer
+     */
+    @FXML
+    public void showInformation() {
+        String instructions = "Buttons:\n\n 1) Axe\t\t: Set Axe Location\n 2) Boat\t\t: Set Boat Location\n " +
+                "3) Default\t: Reset Axe and Boat Locations\n 4) Undo\t\t: Undo Previous Changes\n " +
+                "5) Info\t\t: Show MapViewer Instruction";
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(null);
+        alert.setHeaderText("MapViewer Instruction");
+        alert.setContentText(instructions);
+        alert.showAndWait();
+    }
+
+    /**
+     * Undo the previous change, returning the items back to their previous coordinates
+     */
+    @FXML
+    public void undoChanges() {
+        boat = axe = false;
+        if (coordinateHistory.size() > 1) {
+            coordinateHistory.remove(coordinateHistory.size() - 1);
+            coordinates = coordinateHistory.get(coordinateHistory.size() - 1).clone();
+            saveNewCoordinates();
+            render();
+        }
+    }
 
     /**
      * Read the coordinates from the coordinate save files
@@ -139,6 +173,29 @@ public class MapViewerController {
             coordinates[1] = MapDrawer.DEFAULT_COORDINATE[1];
             coordinates[2] = MapDrawer.DEFAULT_COORDINATE[2];
             coordinates[3] = MapDrawer.DEFAULT_COORDINATE[3];
+        }
+        coordinateHistory.add(coordinates.clone());
+    }
+
+    private void saveNewCoordinates() {
+        BufferedWriter bw;
+        FileWriter fw;
+        try {
+            fw = new FileWriter(COORDINATE_SAVE_FILE);
+            bw = new BufferedWriter(fw);
+
+            for (int i = 0; i < 4; i++) {
+                bw.write(Integer.toString(coordinates[i]));
+                bw.newLine();
+            }
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+        if (!Arrays.equals(coordinates, coordinateHistory.get(coordinateHistory.size() - 1))) {
+            coordinateHistory.add(coordinates.clone());
         }
     }
 
