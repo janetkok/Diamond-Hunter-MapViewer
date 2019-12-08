@@ -36,7 +36,7 @@
 
     <Button layoutX="399.0" layoutY="680.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/undo.png');" />
 
-    <Button id="btnInfo" layoutX="526.0" layoutY="680.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/questionmark.png');">
+    <Button id="btnInfo" layoutX="526.0" layoutY="680.0" mnemonicParsing="false" onAction="#showInformation" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/questionmark.png');">
     </Button>
 
 
