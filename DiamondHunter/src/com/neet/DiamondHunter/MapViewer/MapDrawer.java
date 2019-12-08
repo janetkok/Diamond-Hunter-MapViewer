@@ -211,5 +211,15 @@ public class MapDrawer {
         this.isBoatHighlighted = highlight;
     }
 
-
+    /**
+     * Draw a box around current cursor location on the map
+     * to highlight your current cursor location on the map,
+     * and also show each tile's boundaries for better usability.
+     * @param xCo Current cursor X coordinates
+     * @param yCo Current cursor Y coordinates
+     */
+    public void drawCursorHighlight(int xCo, int yCo) {
+        graphicsContext.setStroke(Color.CORAL);
+        graphicsContext.strokeRect(xCo * 16, yCo * 16, 16, 16);
+    }
 }
