@@ -123,6 +123,19 @@ public class MapViewerController {
     }
 
 
+    /**
+     * Reset the items to their default preset location.
+     */
+    @FXML
+    public void resetToDefaultCoordinates() {
+        boat = axe = false;
+        coordinates[0] = MapDrawer.DEFAULT_COORDINATE[0];
+        coordinates[1] = MapDrawer.DEFAULT_COORDINATE[1];
+        coordinates[2] = MapDrawer.DEFAULT_COORDINATE[2];
+        coordinates[3] = MapDrawer.DEFAULT_COORDINATE[3];
+        saveNewCoordinates();
+        render();
+    }
 
     /**
      * Display an alert box with the instruction for the MapViewer
