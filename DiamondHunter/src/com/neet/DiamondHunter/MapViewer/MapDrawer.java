@@ -217,7 +217,7 @@ public class MapDrawer {
     	if(map[y + rowStart][x + colStart] >= 20) //check for valid terrain
     		clickable = false;
         for(int i = 0; i < 15; i++) { //check for diamond tiles
-        	if(x == diamonds[i][1] && y == diamonds[i][0])
+        	if((x + colStart) == diamonds[i][1] && (y + rowStart) == diamonds[i][0])
         		clickable = false;
         }
         return clickable;
