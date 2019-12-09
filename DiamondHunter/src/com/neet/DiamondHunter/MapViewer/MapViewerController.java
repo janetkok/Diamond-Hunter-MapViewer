@@ -19,6 +19,7 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -31,6 +32,15 @@ public class MapViewerController {
 
 	@FXML
 	private Canvas canvas;
+	
+	@FXML
+	private Label information;
+
+	@FXML
+	private Label axePosition;
+
+	@FXML
+	private Label boatPosition;
 
 	private MapDrawer tileMap;
 
@@ -128,8 +138,8 @@ public class MapViewerController {
 	 */
 	@FXML
 	public void highlightCursor(MouseEvent event) {
-		curMouseX = (int) event.getX() / 16;
-		curMouseY = (int) event.getY() / 16;
+		curMouseX = (int) event.getX() / tileMap.winTileSize;
+		curMouseY = (int) event.getY() / tileMap.winTileSize;
 		render();
 	}
 
@@ -140,26 +150,31 @@ public class MapViewerController {
 	 */
 	@FXML
 	public void setLocation(MouseEvent event) {
-		int xCo = (int) event.getX() / 16;
-		int yCo = (int) event.getY() / 16;
+		int xCo = (int) event.getX() / tileMap.winTileSize;
+		int yCo = (int) event.getY() / tileMap.winTileSize;
 		if (tileMap.isClickable(xCo, yCo)) {
 			if (boat) {
 				coordinates[0] = xCo;
 				coordinates[1] = yCo;
-				System.out.println(coordinates[0] + " " + coordinates[1] + " " + coordinates[2] + " " + coordinates[3]);
-//                saveNewCoordinates();
+				information.setText("Boat pos updated!");
+				boatPosition.setText(
+    					"Boat: (" + xCo + ", " + yCo + ")");
+
 				render();
 			}
 
 			if (axe) {
 				coordinates[2] = xCo;
 				coordinates[3] = yCo;
-				System.out.println(coordinates[0] + " " + coordinates[1] + " " + coordinates[2] + " " + coordinates[3]);
-//                saveNewCoordinates();
+				information.setText("Axe pos updated!");
+				axePosition.setText(
+    					"Axe: (" + xCo + ", " + yCo + ")");
+
 				render();
 			}
 		} else {
 			if (boat || axe) {
+				information.setText("Position invalid!");
 				Alert alert = new Alert(Alert.AlertType.ERROR);
 				alert.setTitle("Warning");
 				alert.setHeaderText(null);
@@ -234,6 +249,7 @@ public class MapViewerController {
 			itemMapFile.println(AXE + "," + coordinates[2] + "," + coordinates[3]);
 			itemMapFile.close();
 			itemMap = dir;
+			information.setText("Map saved!");
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
