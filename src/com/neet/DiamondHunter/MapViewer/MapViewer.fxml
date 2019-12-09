@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="690.0" prefWidth="711.0" style="-fx-background-color: #c9d6ff;" stylesheets="@MapViewer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.DiamondHunter.MapViewer.MapViewerController">
+   <Pane fx:id="instructionpane" layoutX="83.0" layoutY="135.0" prefHeight="387.0" prefWidth="601.0" style="-fx-background-color: #fff;" styleClass="style1" stylesheets="@MapViewer.css">
+      <children>
+         <Text layoutX="215.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instruction" wrappingWidth="204.8033447265625">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Buttons:">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1) Boat: Set Boat Location">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2) Axe: Set Axe Location">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3) Default: Reset Axe and Boat Locations">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4) Undo: Undo Previous Changes">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Menu Bar">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File:">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1)Load Map: Load the map that save before">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2)Save: Update the last preserved map">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3)Save as: Create a new map and save in local">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4)Save as default: Save the map in local and set as default map">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Button layoutX="453.0" layoutY="316.0" mnemonicParsing="false" onAction="#onOkPressed" prefHeight="51.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css" text="OK" />
+      </children>
+   </Pane>
+	<VBox prefHeight="27.0" prefWidth="757.0">
+		<children>
+			<MenuBar prefHeight="27.0" prefWidth="781.0">
+				<menus>
+					<Menu mnemonicParsing="false" text="File">
+						<items>
+							<MenuItem mnemonicParsing="false" onAction="#onLoadMapClicked" text="Load Map" />
+							<MenuItem mnemonicParsing="false" onAction="#onSaveClicked" text="Save" />
+							<MenuItem mnemonicParsing="false" onAction="#onSaveAsClicked" text="Save As..." />
+							<MenuItem mnemonicParsing="false" onAction="#onSaveAsDefaultClicked" text="Save As Default" />
+						</items>
+					</Menu>
+					<Menu mnemonicParsing="false" text="Help">
+						<items>
+							<MenuItem mnemonicParsing="false" onAction="#onInstructionClicked" text="Instruction" />
+							<MenuItem mnemonicParsing="false" onAction="#onAboutClicked" text="About" />
+						</items>
+					</Menu>
+				</menus>
+			</MenuBar>
+		</children>
+	</VBox>
+
+      	<Canvas fx:id="canvas" focusTraversable="true" height="640.0" layoutX="2.0" layoutY="29.0" onMouseClicked="#setLocation" onMouseMoved="#highlightCursor" width="747.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="51.0" AnchorPane.topAnchor="29.0" />
+	<VBox layoutY="670.0" prefHeight="27.0" prefWidth="757.0">
+		<children>
+			<GridPane prefHeight="86.0" prefWidth="740.0" style="-fx-background-color: #5c99d6;">
+				<columnConstraints>
+					<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+					<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+					<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+					<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+					<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+				</columnConstraints>
+				<rowConstraints>
+					<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+				</rowConstraints>
+				<children>
+					<Label fx:id="cursorPosition" style="-fx-font-family: Copperplate;" textFill="WHITE" GridPane.columnIndex="2" />
+					<Label fx:id="information" style="-fx-font-family: Copperplate;" textFill="WHITE" GridPane.columnIndex="4" />
+					<Label fx:id="axePosition" style="-fx-font-family: Copperplate;" text="Axe Not Put" textFill="WHITE" />
+					<Label fx:id="boatPosition" style="-fx-font-family: Copperplate;" text="Boat Not Put" textFill="WHITE" GridPane.columnIndex="1" />
+				</children>
+			</GridPane>
+		</children>
+	</VBox>
+	<GridPane layoutX="516.0" layoutY="-2.0" prefHeight="30.0" prefWidth="182.0">
+		<columnConstraints>
+			<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+		</columnConstraints>
+		<rowConstraints>
+			<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+		</rowConstraints>
+		<children>
+			<Label fx:id="fileOpened" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="233.0" style="-fx-font-family: Copperplate;" textAlignment="RIGHT" />
+		</children>
+	</GridPane>
+	<Pane layoutX="642.0" layoutY="28.0" prefHeight="640.0" prefWidth="115.0" style="-fx-background-color: #c9d6ff;">
+		<children>
+         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="11.0" layoutY="25.0" onMouseClicked="#onZoomInClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@/FXML-Image/zoom-in.png" />
+            </image>
+         </ImageView>
+
+			<Button fx:id="btnBoat" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" pickOnBounds="false" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css" textFill="WHITE">
+				<graphic>
+					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@/FXML-Image/boat.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+
+			<Button fx:id="btnAxe" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
+				<graphic>
+					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@/FXML-Image/axe.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+
+			<Button id="btnReset" layoutY="398.0" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
+				<graphic>
+					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@/FXML-Image/default.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+
+			<Button id="btnUndo" layoutY="526.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
+				<graphic>
+					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+						<image>
+							<Image url="@/FXML-Image/undo.png" />
+						</image>
+					</ImageView>
+				</graphic>
+			</Button>
+         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="65.0" layoutY="24.0" onMouseClicked="#onZoomOutClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@/FXML-Image/zoom-out.png" />
+            </image>
+         </ImageView>
+         <Text layoutX="25.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To move around use 'W' 'A' 'S' D'" textAlignment="CENTER" wrappingWidth="64.0">
+            <font>
+               <Font size="11.0" />
+            </font></Text>
+		</children>
+	</Pane>
+</AnchorPane>
