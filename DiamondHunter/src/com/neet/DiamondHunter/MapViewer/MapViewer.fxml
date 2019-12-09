@@ -15,11 +15,10 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane onKeyPressed="#onKeyPressed" prefHeight="697.0" prefWidth="719.0" style="-fx-background-color: #c9d6ff;" stylesheets="@MapViewer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.DiamondHunter.MapViewer.MapViewerController">
-	<VBox layoutX="640.0" layoutY="32.0" prefHeight="632.0" prefWidth="100.0" />
-	<VBox prefHeight="27.0" prefWidth="740.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="690.0" prefWidth="711.0" style="-fx-background-color: #c9d6ff;" stylesheets="@MapViewer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.DiamondHunter.MapViewer.MapViewerController">
+	<VBox prefHeight="27.0" prefWidth="757.0">
 		<children>
-			<MenuBar prefHeight="35.0" prefWidth="740.0">
+			<MenuBar prefHeight="27.0" prefWidth="781.0">
 				<menus>
 					<Menu mnemonicParsing="false" text="File">
 						<items>
@@ -40,8 +39,8 @@
 		</children>
 	</VBox>
 
-	<Canvas fx:id="canvas" focusTraversable="true" height="640.0" layoutX="1.0" layoutY="29.0" onMouseClicked="#setLocation" onMouseMoved="#highlightCursor" width="740.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="59.0" AnchorPane.topAnchor="29.0" />
-	<VBox layoutY="670.0" prefHeight="27.0" prefWidth="740.0">
+	<Canvas fx:id="canvas" focusTraversable="true" height="640.0" layoutX="1.0" layoutY="29.0" onMouseClicked="#setLocation" onMouseMoved="#highlightCursor" width="747.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="52.0" AnchorPane.topAnchor="29.0" />
+	<VBox layoutY="670.0" prefHeight="27.0" prefWidth="757.0">
 		<children>
 			<GridPane prefHeight="86.0" prefWidth="740.0" style="-fx-background-color: #5c99d6;">
 				<columnConstraints>
@@ -63,7 +62,7 @@
 			</GridPane>
 		</children>
 	</VBox>
-	<GridPane layoutX="515.0" prefHeight="30.0" prefWidth="224.0">
+	<GridPane layoutX="516.0" layoutY="-2.0" prefHeight="30.0" prefWidth="182.0">
 		<columnConstraints>
 			<ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
 		</columnConstraints>
@@ -71,13 +70,18 @@
 			<RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
 		</rowConstraints>
 		<children>
-			<Label fx:id="fileOpened" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="219.0" style="-fx-font-family: Copperplate;" textAlignment="RIGHT" />
+			<Label fx:id="fileOpened" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="233.0" style="-fx-font-family: Copperplate;" textAlignment="RIGHT" />
 		</children>
 	</GridPane>
-	<Pane layoutX="641.0" layoutY="28.0" prefHeight="640.0" prefWidth="100.0" style="-fx-background-color: #c9d6ff;">
+	<Pane layoutX="642.0" layoutY="28.0" prefHeight="640.0" prefWidth="115.0" style="-fx-background-color: #c9d6ff;">
 		<children>
+         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="73.0" layoutY="1.0" onMouseClicked="#onZoomInClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@/FXML-Image/zoom-in.png" />
+            </image>
+         </ImageView>
 
-			<Button fx:id="btnBoat" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" pickOnBounds="false" prefHeight="100.0" prefWidth="100.0" styleClass="style3" stylesheets="@MapViewer.css" textFill="WHITE">
+			<Button fx:id="btnBoat" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" pickOnBounds="false" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css" textFill="WHITE">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -87,7 +91,7 @@
 				</graphic>
 			</Button>
 
-			<Button fx:id="btnAxe" layoutY="190.0" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="100.0" styleClass="style3" stylesheets="@MapViewer.css">
+			<Button fx:id="btnAxe" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -97,7 +101,7 @@
 				</graphic>
 			</Button>
 
-			<Button id="btnReset" layoutY="345.0" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="100.0" prefWidth="100.0" styleClass="style3" stylesheets="@MapViewer.css">
+			<Button id="btnReset" layoutY="370.0" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -107,7 +111,7 @@
 				</graphic>
 			</Button>
 
-			<Button id="btnUndo" layoutY="498.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="100.0" styleClass="style3" stylesheets="@MapViewer.css">
+			<Button id="btnUndo" layoutY="510.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -116,13 +120,11 @@
 					</ImageView>
 				</graphic>
 			</Button>
+         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="72.0" layoutY="38.0" onMouseClicked="#onZoomOutClicked" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@/FXML-Image/zoom-out.png" />
+            </image>
+         </ImageView>
 		</children>
 	</Pane>
-
-	<Button fx:id="btnZoomIn" layoutX="0.0" layoutY="800.0" mnemonicParsing="false" onMouseClicked="#onZoomInClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/plus.png');" />
-	<Button fx:id="btnZoomOut" layoutX="100.0" layoutY="800.0" mnemonicParsing="false" onMouseClicked="#onZoomOutClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/minus.png');" />
-	<Button fx:id="btnNavUp" layoutX="400.0" layoutY="800.0" mnemonicParsing="false" onMouseClicked="#onNavUpClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/up.png');" />
-	<Button fx:id="btnNavDown" layoutX="500.0" layoutY="800.0" mnemonicParsing="false" onMouseClicked="#onNavDownClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/down.png');" />
-	<Button fx:id="btnNavLeft" layoutX="600.0" layoutY="800.0" mnemonicParsing="false" onMouseClicked="#onNavLeftClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/left.png');" />
-	<Button fx:id="btnNavRight" layoutX="700.0" layoutY="800.0" mnemonicParsing="false" onMouseClicked="#onNavRightClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/right.png');" />
 </AnchorPane>
