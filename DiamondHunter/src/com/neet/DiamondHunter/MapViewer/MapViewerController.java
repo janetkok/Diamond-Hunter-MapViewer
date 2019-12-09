@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -16,6 +17,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -65,7 +68,15 @@ public class MapViewerController {
 	 */
 	@FXML
 	public void onSaveAsDefaultClicked() {
-		saveNewCoordinates("default.itm");
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Confirmation");
+		alert.setHeaderText("Are you sure to replace the default map?");
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			saveNewCoordinates("default.itm");
+		} else {
+			alert.close();
+		}
 	}
 
 	/**
@@ -88,6 +99,7 @@ public class MapViewerController {
 		File itemFile = itemFileChooser.showSaveDialog(view);
 		saveNewCoordinates(itemFile.getAbsolutePath());
 	}
+
 
 	/**
 	 * Handle Axe Button Click event
@@ -283,6 +295,10 @@ public class MapViewerController {
 			coordinates[2] = y;
 			coordinates[3] = x;
 		}
+	}
+	
+	public static String getItemMap() {
+		return itemMap;
 	}
 
 	/**
