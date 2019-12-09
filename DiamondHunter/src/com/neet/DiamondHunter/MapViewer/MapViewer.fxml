@@ -40,6 +40,11 @@
                      <MenuItem mnemonicParsing="false" onAction="#onSaveAsDefaultClicked" text="Save As Default" />
                </items>
              </Menu>
+              <Menu mnemonicParsing="false" text="Help">
+               <items>
+                 <MenuItem mnemonicParsing="false" onAction="#onAboutClicked" text="About" />
+               </items>
+             </Menu>
            </menus>
          </MenuBar>
       </children>

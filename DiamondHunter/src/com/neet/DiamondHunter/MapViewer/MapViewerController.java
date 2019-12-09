@@ -112,7 +112,20 @@ public class MapViewerController {
 		File itemFile = itemFileChooser.showSaveDialog(view);
 		saveNewCoordinates(itemFile.getAbsolutePath());
 	}
-
+	
+	/**
+	 * Opens about 
+	 * 
+	 */
+	@FXML
+	private void onAboutClicked() {
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("About");
+		alert.setHeaderText("Author");
+		alert.setContentText("University of Nottingham : \n\nKok Yong En\nOoi Kai Sheng\nKhor Ern Chieh\nYoh Zhi Ying");
+		alert.showAndWait();
+		alert.setOnCloseRequest(event -> {alert.close();});
+	}
 
 	/**
 	 * Handle Axe Button Click event
