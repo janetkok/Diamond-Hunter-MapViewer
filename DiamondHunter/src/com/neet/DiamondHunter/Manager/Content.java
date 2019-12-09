@@ -8,9 +8,12 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
 import javax.imageio.ImageIO;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class Content {
 	
+	private static String itemMap = "default.itm";
 	public static BufferedImage[][] MENUBG = load("/HUD/menuscreen.gif", 128, 144);
 	public static BufferedImage[][] BAR = load("/HUD/bar.gif", 128, 16);
 	
@@ -56,6 +59,20 @@ public class Content {
 			int col = c % font[0].length;
 			g.drawImage(font[row][col], x + 8 * i, y, null);
 		}
+	}
+	public static void loadItems() {
+		JFileChooser itemLoader = new JFileChooser();
+		itemLoader.setFileFilter(new FileNameExtensionFilter("Item Map File","itm"));
+		int result = itemLoader.showOpenDialog(null);
+		
+		 if (result == JFileChooser.APPROVE_OPTION){
+			 System.out.println(itemLoader.getSelectedFile().getAbsolutePath());
+			itemMap = itemLoader.getSelectedFile().getAbsolutePath();
+		 }
+		}
+
+	public static String getItemMap() {
+		return itemMap;
 	}
 	
 }
