@@ -222,11 +222,12 @@ public class MapViewerController {
 		render();
 	}
 
+	
 	/**
 	 * Display an alert box with the instruction for the MapViewer
 	 */
 	@FXML
-	public void showInformation() {
+	public void onInstructionClicked() {
 		String instructions = "Buttons:\n\n 1) Axe\t\t: Set Axe Location\n 2) Boat\t\t: Set Boat Location\n "
 				+ "3) Default\t: Reset Axe and Boat Locations\n 4) Undo\t\t: Undo Previous Changes\n "
 				+ "5) Info\t\t: Show MapViewer Instruction";

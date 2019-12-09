@@ -16,16 +16,13 @@
    <VBox layoutX="640.0" layoutY="32.0" prefHeight="632.0" prefWidth="100.0">
       <children>
       
-          <Button id="btnBoat" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/boat.png');" />
+          <Button fx:id="btnBoat" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" pickOnBounds="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/boat.png');" textFill="WHITE" />
       
-          <Button id="btnAxe" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/axe.png');" />
+          <Button fx:id="btnAxe" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/axe.png');" />
       
           <Button id="btnReset" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/default.png');" />
       
           <Button id="btnUndo" mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/undo.png');" />
-      
-          <Button id="btnInfo" mnemonicParsing="false" onAction="#showInformation" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/questionmark.png');">
-    </Button>
       </children>
    </VBox>
    <VBox prefHeight="27.0" prefWidth="740.0">
@@ -42,6 +39,7 @@
              </Menu>
              <Menu mnemonicParsing="false" text="Help">
                <items>
+                     <MenuItem mnemonicParsing="false" onAction="#onInstructionClicked" text="Instruction" />
                  <MenuItem mnemonicParsing="false" onAction="#onAboutClicked" text="About" />
                </items>
              </Menu>
