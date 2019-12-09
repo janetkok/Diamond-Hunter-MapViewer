@@ -22,6 +22,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -69,6 +70,10 @@ public class MapViewerController {
 	private final int AXE = 1;
 	private final int BOAT = 0;
 	private static String itemMap = "";
+	
+	//mouse event
+	private double oldX=17.0;
+	private double oldY = 17.0;
 
 	/**
 	 * Initialize function, meant for fxml loader to initialize the controller
@@ -166,6 +171,30 @@ public class MapViewerController {
 		cursorPosition.setText("(" + curMouseX + ", " + curMouseY + ")");
 		render();
 	}
+	
+	/**
+	 * Nav up down left right during zoom
+	 *
+	 * @param event KeyEvent
+	 */
+	@FXML
+	public void onKeyPressed(KeyEvent event) {
+		switch(event.getCode()){
+			case W:
+				onNavUpClicked();
+				break;
+			case S:
+				onNavDownClicked();
+				break;
+			case A:
+				onNavLeftClicked();
+				break;
+			case D:
+				onNavRightClicked();
+				break;
+		}
+	}
+
 
 	/**
 	 * Set the item's location
