@@ -153,7 +153,14 @@ public class MapDrawer {
      * @return boolean value indicating if the tile is clickable
      */
     public boolean isClickable(int x, int y) {
-        return map[y][x] < 20;
+    	boolean clickable = true;
+    	if(map[y][x] >= 20) //check for valid terrain
+    		clickable = false;
+        for(int i = 0; i < 15; i++) { //check for diamond tiles
+        	if(x == diamonds[i][1] && y == diamonds[i][0])
+        		clickable = false;
+        }
+        return clickable;
     }
 
     /**
