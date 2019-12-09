@@ -55,15 +55,33 @@ public class MapViewerController {
 	public void initialize() {
 		this.tileMap = new MapDrawer(canvas);
 		this.coordinateHistory = new ArrayList<>();
-		readCoordinates();
+		setCoordinates();
 		render();
 		initSaveMapChooser();
 	}
 
 	/**
+	 * save as default
+	 */
+	@FXML
+	public void onSaveAsDefaultClicked() {
+		saveNewCoordinates("default.itm");
+	}
+
+	/**
+	 * save as default
+	 */
+	@FXML
+	public void onSaveClicked() {
+		if (itemMap != "")
+			saveNewCoordinates(itemMap);
+		else
+			onSaveAsClicked();
+	}
+
+	/**
 	 * Opens a File Chooser and saves the map to the selected file
 	 * 
-	 * @param event - FXML event that fires this method
 	 */
 	@FXML
 	private void onSaveAsClicked() {
@@ -185,11 +203,10 @@ public class MapViewerController {
 	}
 
 	/**
-	 * Read the coordinates from the coordinate save files
+	 * set default coordinates
 	 */
-	private void readCoordinates() {
+	private void setCoordinates() {
 
-		// if there is no file, use the default coordinates
 		coordinates[0] = MapDrawer.DEFAULT_COORDINATE[0];
 		coordinates[1] = MapDrawer.DEFAULT_COORDINATE[1];
 		coordinates[2] = MapDrawer.DEFAULT_COORDINATE[2];
@@ -204,6 +221,7 @@ public class MapViewerController {
 			itemMapFile.println(BOAT + "," + coordinates[0] + "," + coordinates[1]);
 			itemMapFile.println(AXE + "," + coordinates[2] + "," + coordinates[3]);
 			itemMapFile.close();
+			itemMap = dir;
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -256,12 +274,12 @@ public class MapViewerController {
 			e.printStackTrace();
 		}
 	}
-//moved to model
-	public void placeItem(int item, int x, int y) {
-		if(item==0) {
+
+	private void placeItem(int item, int x, int y) {
+		if (item == 0) {
 			coordinates[0] = y;
 			coordinates[1] = x;
-		}else {
+		} else {
 			coordinates[2] = y;
 			coordinates[3] = x;
 		}
