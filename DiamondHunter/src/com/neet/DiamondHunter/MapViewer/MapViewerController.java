@@ -34,6 +34,9 @@ public class MapViewerController {
 	private Canvas canvas;
 	
 	@FXML
+	private Label cursorPosition;
+	
+	@FXML
 	private Label information;
 
 	@FXML
@@ -140,6 +143,7 @@ public class MapViewerController {
 	public void highlightCursor(MouseEvent event) {
 		curMouseX = (int) event.getX() / tileMap.winTileSize;
 		curMouseY = (int) event.getY() / tileMap.winTileSize;
+		cursorPosition.setText("(" + curMouseX + ", " + curMouseY + ")");
 		render();
 	}
 
