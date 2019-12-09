@@ -7,6 +7,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -44,6 +46,9 @@ public class MapViewerController {
 
 	@FXML
 	private Label boatPosition;
+	
+	@FXML
+	private Label fileOpened;
 
 	private MapDrawer tileMap;
 
@@ -267,6 +272,8 @@ public class MapViewerController {
 			itemMapFile.close();
 			itemMap = dir;
 			information.setText("Map saved!");
+			Path p = Paths.get(dir);
+			fileOpened.setText(p.getFileName().toString());
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -319,6 +326,8 @@ public class MapViewerController {
 				}
 			}
 			reader.close();
+			Path p = Paths.get(itemMap);
+			fileOpened.setText(p.getFileName().toString());
 			coordinateHistory.add(coordinates.clone());
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -16,13 +16,13 @@
    <VBox layoutX="640.0" layoutY="32.0" prefHeight="632.0" prefWidth="100.0">
       <children>
       
-          <Button fx:id="btnBoat" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/boat.png');" />
+          <Button id="btnBoat" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/boat.png');" />
       
-          <Button fx:id="btnAxe" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/axe.png');" />
+          <Button id="btnAxe" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/axe.png');" />
       
           <Button id="btnReset" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/default.png');" />
       
-          <Button mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/undo.png');" />
+          <Button id="btnUndo" mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/undo.png');" />
       
           <Button id="btnInfo" mnemonicParsing="false" onAction="#showInformation" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/questionmark.png');">
     </Button>
@@ -65,13 +65,24 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <Label fx:id="cursorPosition" style="-fx-font-family: Copperplate;" textFill="WHITE" />
+               <Label fx:id="cursorPosition" style="-fx-font-family: Copperplate;" textFill="WHITE" GridPane.columnIndex="2" />
                <Label fx:id="information" style="-fx-font-family: Copperplate;" textFill="WHITE" GridPane.columnIndex="4" />
-               <Label fx:id="axePosition" style="-fx-font-family: Copperplate;" text="Axe Not Put" textFill="WHITE" GridPane.columnIndex="1" />
-               <Label fx:id="boatPosition" style="-fx-font-family: Copperplate;" text="Boat Not Put" textFill="WHITE" GridPane.columnIndex="2" />
+               <Label fx:id="axePosition" style="-fx-font-family: Copperplate;" text="Axe Not Put" textFill="WHITE" />
+               <Label fx:id="boatPosition" style="-fx-font-family: Copperplate;" text="Boat Not Put" textFill="WHITE" GridPane.columnIndex="1" />
             </children>
          </GridPane>
       </children></VBox>
+   <GridPane layoutX="515.0" prefHeight="30.0" prefWidth="224.0">
+     <columnConstraints>
+       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+     </columnConstraints>
+     <rowConstraints>
+       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+     </rowConstraints>
+      <children>
+         <Label fx:id="fileOpened" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="18.0" prefWidth="219.0" style="-fx-font-family: Copperplate;" textAlignment="RIGHT" />
+      </children>
+   </GridPane>
 
 
 </AnchorPane>
