@@ -32,10 +32,10 @@ public class MapViewerController {
 
 	@FXML
 	private Canvas canvas;
-	
+
 	@FXML
 	private Label cursorPosition;
-	
+
 	@FXML
 	private Label information;
 
@@ -112,9 +112,9 @@ public class MapViewerController {
 		File itemFile = itemFileChooser.showSaveDialog(view);
 		saveNewCoordinates(itemFile.getAbsolutePath());
 	}
-	
+
 	/**
-	 * Opens about 
+	 * Opens about
 	 * 
 	 */
 	@FXML
@@ -124,7 +124,9 @@ public class MapViewerController {
 		alert.setHeaderText("Author");
 		alert.setContentText("University of Nottingham : \n\nKok Yong En\nOoi Kai Sheng\nKhor Ern Chieh\nYoh Zhi Ying");
 		alert.showAndWait();
-		alert.setOnCloseRequest(event -> {alert.close();});
+		alert.setOnCloseRequest(event -> {
+			alert.close();
+		});
 	}
 
 	/**
@@ -174,8 +176,7 @@ public class MapViewerController {
 				coordinates[0] = xCo;
 				coordinates[1] = yCo;
 				information.setText("Boat pos updated!");
-				boatPosition.setText(
-    					"Boat: (" + xCo + ", " + yCo + ")");
+				boatPosition.setText("Boat: (" + xCo + ", " + yCo + ")");
 
 				render();
 			}
@@ -184,11 +185,11 @@ public class MapViewerController {
 				coordinates[2] = xCo;
 				coordinates[3] = yCo;
 				information.setText("Axe pos updated!");
-				axePosition.setText(
-    					"Axe: (" + xCo + ", " + yCo + ")");
+				axePosition.setText("Axe: (" + xCo + ", " + yCo + ")");
 
 				render();
 			}
+			saveCoordinateHistory();
 		} else {
 			if (boat || axe) {
 				information.setText("Position invalid!");
@@ -212,7 +213,7 @@ public class MapViewerController {
 		coordinates[1] = MapDrawer.DEFAULT_COORDINATE[1];
 		coordinates[2] = MapDrawer.DEFAULT_COORDINATE[2];
 		coordinates[3] = MapDrawer.DEFAULT_COORDINATE[3];
-//        saveNewCoordinates();
+		saveCoordinateHistory();
 		render();
 	}
 
@@ -241,7 +242,7 @@ public class MapViewerController {
 		if (coordinateHistory.size() > 1) {
 			coordinateHistory.remove(coordinateHistory.size() - 1);
 			coordinates = coordinateHistory.get(coordinateHistory.size() - 1).clone();
-//            saveNewCoordinates();
+			saveCoordinateHistory();
 			render();
 		}
 	}
@@ -250,7 +251,6 @@ public class MapViewerController {
 	 * set default coordinates
 	 */
 	private void setCoordinates() {
-
 		coordinates[0] = MapDrawer.DEFAULT_COORDINATE[0];
 		coordinates[1] = MapDrawer.DEFAULT_COORDINATE[1];
 		coordinates[2] = MapDrawer.DEFAULT_COORDINATE[2];
@@ -270,9 +270,7 @@ public class MapViewerController {
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		if (!Arrays.equals(coordinates, coordinateHistory.get(coordinateHistory.size() - 1))) {
-			coordinateHistory.add(coordinates.clone());
-		}
+		saveCoordinateHistory();
 	}
 
 	/**
@@ -312,24 +310,27 @@ public class MapViewerController {
 				y = Integer.parseInt(data[1]);
 				x = Integer.parseInt(data[2]);
 
-				placeItem(item, x, y);
+				if (item == 0) {
+					coordinates[0] = y;
+					coordinates[1] = x;
+				} else {
+					coordinates[2] = y;
+					coordinates[3] = x;
+				}
 			}
 			reader.close();
+			coordinateHistory.add(coordinates.clone());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 
-	private void placeItem(int item, int x, int y) {
-		if (item == 0) {
-			coordinates[0] = y;
-			coordinates[1] = x;
-		} else {
-			coordinates[2] = y;
-			coordinates[3] = x;
+	private void saveCoordinateHistory() {
+		if (!Arrays.equals(coordinates, coordinateHistory.get(coordinateHistory.size() - 1))) {
+			coordinateHistory.add(coordinates.clone());
 		}
 	}
-	
+
 	public static String getItemMap() {
 		return itemMap;
 	}

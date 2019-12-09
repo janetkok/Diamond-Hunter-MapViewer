@@ -40,7 +40,7 @@
                      <MenuItem mnemonicParsing="false" onAction="#onSaveAsDefaultClicked" text="Save As Default" />
                </items>
              </Menu>
-              <Menu mnemonicParsing="false" text="Help">
+             <Menu mnemonicParsing="false" text="Help">
                <items>
                  <MenuItem mnemonicParsing="false" onAction="#onAboutClicked" text="About" />
                </items>
@@ -65,8 +65,8 @@
              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
            </rowConstraints>
             <children>
-               <Label fx:id="cursorPosition" style="-fx-font-family: Copperplate;" text="(17,17)" textFill="WHITE" />
-               <Label fx:id="information" style="-fx-font-family: Copperplate;" text="-" textFill="WHITE" GridPane.columnIndex="4" />
+               <Label fx:id="cursorPosition" style="-fx-font-family: Copperplate;" textFill="WHITE" />
+               <Label fx:id="information" style="-fx-font-family: Copperplate;" textFill="WHITE" GridPane.columnIndex="4" />
                <Label fx:id="axePosition" style="-fx-font-family: Copperplate;" text="Axe Not Put" textFill="WHITE" GridPane.columnIndex="1" />
                <Label fx:id="boatPosition" style="-fx-font-family: Copperplate;" text="Boat Not Put" textFill="WHITE" GridPane.columnIndex="2" />
             </children>
