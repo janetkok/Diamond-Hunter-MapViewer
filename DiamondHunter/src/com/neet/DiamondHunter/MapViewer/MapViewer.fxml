@@ -7,18 +7,30 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
-<AnchorPane prefHeight="760.0" prefWidth="640.0" style="-fx-background-color: #99dbfc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.DiamondHunter.MapViewer.MapViewerController">
-
-    <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="#99dbfc" height="114.0" layoutX="5.0" layoutY="673.0" stroke="BLACK" strokeMiterLimit="0.0" strokeType="OUTSIDE" strokeWidth="4.0" width="631.0" />
-   <VBox prefHeight="27.0" prefWidth="640.0">
+<AnchorPane prefHeight="669.0" prefWidth="270.0" style="-fx-background-color: #99dbfc;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.DiamondHunter.MapViewer.MapViewerController">
+   <VBox layoutX="641.0" layoutY="32.0" prefHeight="632.0" prefWidth="102.0">
       <children>
-         <MenuBar>
+      
+          <Button fx:id="btnBoat" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" prefHeight="100.0" prefWidth="102.0" style="-fx-background-image: url('/FXML-Image/boat.png');" />
+      
+          <Button fx:id="btnAxe" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="105.0" style="-fx-background-image: url('/FXML-Image/axe.png');" />
+      
+          <Button id="btnReset" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="100.0" prefWidth="106.0" style="-fx-background-image: url('/FXML-Image/default.png');" />
+      
+          <Button mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="108.0" style="-fx-background-image: url('/FXML-Image/undo.png');" />
+      
+          <Button id="btnInfo" mnemonicParsing="false" onAction="#showInformation" prefHeight="100.0" prefWidth="105.0" style="-fx-background-image: url('/FXML-Image/questionmark.png');">
+    </Button>
+      </children>
+   </VBox>
+   <VBox prefHeight="27.0" prefWidth="742.0">
+      <children>
+         <MenuBar prefHeight="34.0" prefWidth="640.0">
            <menus>
              <Menu mnemonicParsing="false" text="File">
                <items>
-               <MenuItem mnemonicParsing="false" onAction="#onLoadMapClicked" text="Load Map" />
+                     <MenuItem mnemonicParsing="false" onAction="#onLoadMapClicked" text="Load Map" />
                  <MenuItem mnemonicParsing="false" onAction="#onSaveAsClicked" text="Save As..." />
                </items>
              </Menu>
@@ -28,17 +40,6 @@
    </VBox>
 
     <Canvas fx:id="canvas" focusTraversable="true" height="640.0" layoutX="1.0" layoutY="29.0" onMouseClicked="#setLocation" onMouseMoved="#highlightCursor" width="640.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-0.7999999999999545" AnchorPane.topAnchor="29.0" />
-
-    <Button fx:id="btnAxe" layoutX="14.0" layoutY="680.0" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/axe.png');" />
-
-    <Button fx:id="btnBoat" layoutX="139.0" layoutY="680.0" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/boat.png');" />
-
-    <Button id="btnReset" layoutX="264.0" layoutY="680.0" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/default.png');" />
-
-    <Button layoutX="399.0" layoutY="680.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/undo.png');" />
-
-    <Button id="btnInfo" layoutX="526.0" layoutY="680.0" mnemonicParsing="false" onAction="#showInformation" prefHeight="100.0" prefWidth="100.0" style="-fx-background-image: url('/FXML-Image/questionmark.png');">
-    </Button>
 
 
 </AnchorPane>
