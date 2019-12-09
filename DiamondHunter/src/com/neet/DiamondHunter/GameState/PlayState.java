@@ -8,6 +8,7 @@ package com.neet.DiamondHunter.GameState;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import com.neet.DiamondHunter.Entity.Item;
 import com.neet.DiamondHunter.Entity.Player;
 import com.neet.DiamondHunter.Entity.Sparkle;
 import com.neet.DiamondHunter.HUD.Hud;
+import com.neet.DiamondHunter.Main.Game;
 import com.neet.DiamondHunter.Main.GamePanel;
 import com.neet.DiamondHunter.Manager.Content;
 import com.neet.DiamondHunter.Manager.Data;
@@ -24,6 +26,8 @@ import com.neet.DiamondHunter.Manager.GameStateManager;
 import com.neet.DiamondHunter.Manager.JukeBox;
 import com.neet.DiamondHunter.Manager.Keys;
 import com.neet.DiamondHunter.MapViewer.MapDrawer;
+import com.neet.DiamondHunter.MapViewer.MapViewer;
+import com.neet.DiamondHunter.MapViewer.MapViewerController;
 import com.neet.DiamondHunter.TileMap.TileMap;
 
 public class PlayState extends GameState {
@@ -191,7 +195,8 @@ public class PlayState extends GameState {
 			
 			while((currLine = reader.readLine())!= null){
 				data = currLine.split(",");
-				
+				if(data.length!=3)
+					throw new IOException("invalid input");
 				coordinates[i] = Integer.parseInt(data[1]);
 				coordinates[++i] = Integer.parseInt(data[2]);
 				i++;

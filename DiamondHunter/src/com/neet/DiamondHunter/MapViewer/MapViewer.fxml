@@ -14,8 +14,75 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" onKeyPressed="#onKeyPressed" prefHeight="690.0" prefWidth="711.0" style="-fx-background-color: #c9d6ff;" stylesheets="@MapViewer.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.neet.DiamondHunter.MapViewer.MapViewerController">
+   <Pane fx:id="instructionpane" layoutX="83.0" layoutY="135.0" prefHeight="387.0" prefWidth="601.0" style="-fx-background-color: #fff;" styleClass="style1" stylesheets="@MapViewer.css">
+      <children>
+         <Text layoutX="215.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instruction" wrappingWidth="204.8033447265625">
+            <font>
+               <Font size="38.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Buttons:">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Text>
+         <Text layoutX="42.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" 1) Axe: Set Axe Location">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2) Boat: Set Boat Location">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3) Default: Reset Axe and Boat Locations">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4) Undo: Undo Previous Changes">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Menu Bar">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="File:">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1)Load Map: Load the map that save before">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2)Save: Update the last preserved map">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3)Save as: Create a new map and save in local">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Text layoutX="46.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4)Save as default: Save the map in local and set as default map">
+            <font>
+               <Font size="16.0" />
+            </font>
+         </Text>
+         <Button layoutX="453.0" layoutY="316.0" mnemonicParsing="false" onAction="#onOkPressed" prefHeight="51.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css" text="OK" />
+      </children>
+   </Pane>
 	<VBox prefHeight="27.0" prefWidth="757.0">
 		<children>
 			<MenuBar prefHeight="27.0" prefWidth="781.0">
@@ -75,13 +142,13 @@
 	</GridPane>
 	<Pane layoutX="642.0" layoutY="28.0" prefHeight="640.0" prefWidth="115.0" style="-fx-background-color: #c9d6ff;">
 		<children>
-         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="73.0" layoutY="1.0" onMouseClicked="#onZoomInClicked" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="11.0" layoutY="25.0" onMouseClicked="#onZoomInClicked" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@/FXML-Image/zoom-in.png" />
             </image>
          </ImageView>
 
-			<Button fx:id="btnBoat" layoutY="84.0" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" pickOnBounds="false" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css" textFill="WHITE">
+			<Button fx:id="btnBoat" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#onBtnBoatClicked" pickOnBounds="false" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css" textFill="WHITE">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -91,7 +158,7 @@
 				</graphic>
 			</Button>
 
-			<Button fx:id="btnAxe" layoutY="227.0" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
+			<Button fx:id="btnAxe" layoutY="267.0" mnemonicParsing="false" onMouseClicked="#onBtnAxeClicked" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -101,7 +168,7 @@
 				</graphic>
 			</Button>
 
-			<Button id="btnReset" layoutY="370.0" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
+			<Button id="btnReset" layoutY="398.0" mnemonicParsing="false" onAction="#resetToDefaultCoordinates" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -111,7 +178,7 @@
 				</graphic>
 			</Button>
 
-			<Button id="btnUndo" layoutY="510.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
+			<Button id="btnUndo" layoutY="526.0" mnemonicParsing="false" onAction="#undoChanges" prefHeight="107.0" prefWidth="115.0" styleClass="style3" stylesheets="@MapViewer.css">
 				<graphic>
 					<ImageView fitHeight="45.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
 						<image>
@@ -120,11 +187,15 @@
 					</ImageView>
 				</graphic>
 			</Button>
-         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="72.0" layoutY="38.0" onMouseClicked="#onZoomOutClicked" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="36.0" fitWidth="42.0" layoutX="65.0" layoutY="24.0" onMouseClicked="#onZoomOutClicked" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@/FXML-Image/zoom-out.png" />
             </image>
          </ImageView>
+         <Text layoutX="25.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" text="To move around use 'W' 'A' 'S' D'" textAlignment="CENTER" wrappingWidth="64.0">
+            <font>
+               <Font size="11.0" />
+            </font></Text>
 		</children>
 	</Pane>
 </AnchorPane>
