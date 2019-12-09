@@ -30,16 +30,17 @@ public class MapViewer extends Application{
 		primaryStage.show();
 		primaryStage.getIcons().add(new Image("/FXML-Image/windowsIcon.png"));
 		primaryStage.setOnCloseRequest(event -> {
+			//confirmation dialog appears when admin closes MapViewer without saving
 			if (MapViewerController.getItemMap() == "" || MapViewerController.getItemMap() == null) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Confirmation");
 				alert.setHeaderText("Leave without saving?");
 				Optional<ButtonType> result = alert.showAndWait();
-				if (result.get() == ButtonType.OK) {
-					System.exit(0);
-				} else {
+				if (result.get() == ButtonType.OK) {//if admin confirms to leave,system exit
+					System.exit(0); 
+				} else {//admin cancel leaving
 					alert.close();
-					event.consume();
+					event.consume();//stop close request and continue with MapViewer
 				}
 			} else {
 				System.exit(0);

@@ -188,6 +188,7 @@ public class PlayState extends GameState {
 		String[] data = new String[3];
 		int i=0, x, y;
 		
+		//read coordinates from map
         try {
 
 			FileReader input = new FileReader(Content.getItemMap());
@@ -201,8 +202,6 @@ public class PlayState extends GameState {
 				coordinates[++i] = Integer.parseInt(data[2]);
 				i++;
 			}
-				
-			
 			reader.close();
         } catch (IOException e) {
             //Reassign just in case.

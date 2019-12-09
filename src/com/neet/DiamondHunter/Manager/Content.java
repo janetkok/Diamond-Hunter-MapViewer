@@ -65,6 +65,10 @@ public class Content {
 			g.drawImage(font[row][col], x + 8 * i, y, null);
 		}
 	}
+	
+	/**
+	 * Open file chooser and select map file
+	 * */
 	public static void loadItems() {
 		JFileChooser itemLoader = new JFileChooser();
 		itemLoader.setFileFilter(new FileNameExtensionFilter("Item Map File","itm"));

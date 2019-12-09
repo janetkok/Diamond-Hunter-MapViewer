@@ -71,7 +71,7 @@ public class MenuState extends GameState {
 			gsm.setState(GameStateManager.PLAY);
 		}
 		if(currentOption == 1) {
-			Content.loadItems();
+			Content.loadItems(); //open file choser and load map file
 		}
 		
 		if(currentOption == 2) {
