@@ -190,7 +190,7 @@ public class MapDrawer {
     public void drawAvatar() {
         //Draw the avatar
         graphicsContext.drawImage(avatarSprite, 0, 0, tileSize, tileSize,
-                (17 * winTileSize), (17 * winTileSize), winTileSize, winTileSize);
+                ((17  - colStart) * winTileSize), ((17 - rowStart) * winTileSize), winTileSize, winTileSize);
     }
 
     /**
