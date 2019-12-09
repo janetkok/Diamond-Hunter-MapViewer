@@ -221,7 +221,42 @@ public class MapViewerController {
 		itemFileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Item Map", "*.itm"));
 	}
 
+	/**
+	 * Load Map menu item clicked
+	 */
+	@FXML
+	private void onLoadMapClicked() {
+		JFileChooser itemLoader = new JFileChooser();
+		itemLoader.setFileFilter(new FileNameExtensionFilter("Item Map File", "itm"));
+		int result = itemLoader.showOpenDialog(null);
 
+		if (result == JFileChooser.APPROVE_OPTION) {
+			System.out.println(itemLoader.getSelectedFile().getAbsolutePath());
+			itemMap = itemLoader.getSelectedFile().getAbsolutePath();
+		}
+		String currLine;
+		String[] data = new String[3];
+		int item, x, y;
+
+		try {
+			FileReader input = new FileReader(itemMap);
+			BufferedReader reader = new BufferedReader(input);
+
+			while ((currLine = reader.readLine()) != null) {
+				data = currLine.split(",");
+				item = Integer.parseInt(data[0]);
+
+				y = Integer.parseInt(data[1]);
+				x = Integer.parseInt(data[2]);
+
+				placeItem(item, x, y);
+			}
+			reader.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+//moved to model
 	public void placeItem(int item, int x, int y) {
 		if(item==0) {
 			coordinates[0] = y;
