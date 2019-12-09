@@ -161,8 +161,8 @@ public class MapViewerController {
 	 */
 	@FXML
 	public void highlightCursor(MouseEvent event) {
-		curMouseX = (int) event.getX() / tileMap.winTileSize;
-		curMouseY = (int) event.getY() / tileMap.winTileSize;
+		curMouseX = ((int) event.getX() / tileMap.winTileSize) + tileMap.colStart;
+		curMouseY = ((int) event.getY() / tileMap.winTileSize) + tileMap.rowStart;
 		cursorPosition.setText("(" + curMouseX + ", " + curMouseY + ")");
 		render();
 	}
@@ -174,8 +174,8 @@ public class MapViewerController {
 	 */
 	@FXML
 	public void setLocation(MouseEvent event) {
-		int xCo = (int) event.getX() / tileMap.winTileSize;
-		int yCo = (int) event.getY() / tileMap.winTileSize;
+		int xCo = ((int) event.getX() / tileMap.winTileSize) + tileMap.colStart;
+		int yCo = ((int) event.getY() / tileMap.winTileSize) + tileMap.rowStart;
 		if (tileMap.isClickable(xCo, yCo)) {
 			if (boat) {
 				coordinates[0] = xCo;
@@ -344,6 +344,43 @@ public class MapViewerController {
 	public static String getItemMap() {
 		return itemMap;
 	}
+	
+	//zoom
+	public void onZoomInClicked() {
+		if(tileMap.zoomRatio != 4) {
+			tileMap.zoomRatio *= 2;
+		}
+		tileMap.zoomUpdate();
+		render();
+	}
+	
+	public void onZoomOutClicked() {
+		if(tileMap.zoomRatio != 1)
+			tileMap.zoomRatio /= 2;
+		tileMap.zoomUpdate();
+		render();
+	}
+	
+	//zoomed map navigation
+	public void onNavUpClicked() {
+		tileMap.navUpdate(1);
+		render();
+	}
+	
+	public void onNavDownClicked() {
+		tileMap.navUpdate(2);
+		render();
+	}
+	
+	public void onNavLeftClicked() {
+		tileMap.navUpdate(3);
+		render();
+	}
+	
+	public void onNavRightClicked() {
+		tileMap.navUpdate(4);
+		render();
+	}
 
 	/**
 	 * Responsible for the rendering of the canvas. All rendering related operations
@@ -357,5 +394,11 @@ public class MapViewerController {
 		tileMap.setBoatHighlighted(boat);
 		tileMap.drawItems(coordinates[0], coordinates[1], coordinates[2], coordinates[3]);
 		tileMap.drawCursorHighlight(curMouseX, curMouseY);
+		System.out.println("rowStart " + tileMap.rowStart);
+		System.out.println("colStart " + tileMap.colStart);
+    	System.out.println("numRowDisp " + tileMap.numRowDisp);
+    	System.out.println("numColDisp " + tileMap.numColDisp);
+    	System.out.println();
 	}
+	
 }

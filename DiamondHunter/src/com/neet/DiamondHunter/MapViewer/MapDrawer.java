@@ -23,10 +23,7 @@ public class MapDrawer {
     private Image tile;
     private Image itemSprite;
     private Image avatarSprite;
-    private Image diamondSprite;
-
-    //window tile size
-    public int winTileSize = 16;
+    private Image diamondSprite;    
     
     private int tileSize;
     private int[][] map;
@@ -34,6 +31,14 @@ public class MapDrawer {
     private int mapHeight;
     private boolean isAxeHighlighted;
     private boolean isBoatHighlighted;
+    
+    //zoom feature
+    public int zoomRatio;
+    public int numRowDisp;
+    public int numColDisp;
+    public int winTileSize;
+    public int rowStart;
+    public int colStart;
     
     //diamond coordinates
     private int diamonds[][] = {{20, 20}, {12, 36}, {28, 4}, {4, 34}, {28, 19}, {35, 26}, {38, 36}, {27, 28}, {20, 30}, {14, 25}, {4, 21}, {9, 14}, {4, 3}, {20, 14}, {13, 20}};
@@ -54,6 +59,15 @@ public class MapDrawer {
         this.diamondSprite = new Image("/Sprites/diamond.gif");
         this.isAxeHighlighted = false;
         this.isBoatHighlighted = false;
+        
+        //zoom feature
+        this.zoomRatio = 1;
+        this.winTileSize = 16;
+        this.rowStart = 0;
+        this.colStart = 0;
+        this.numRowDisp = 40;
+        this.numColDisp = 40;
+        
 
         try {
             InputStream in = getClass().getResourceAsStream(MAP_URL); //read map file
@@ -79,13 +93,59 @@ public class MapDrawer {
         canvas.setHeight(mapHeight * winTileSize);
     }
 
+    public void zoomUpdate() {
+    	
+    	//zoom with current view as center
+    	rowStart = rowStart + numRowDisp / 2;
+    	numRowDisp = map.length / zoomRatio;
+    	rowStart -= numRowDisp / 2;
+    	colStart = colStart + numColDisp / 2;;
+    	numColDisp = numRowDisp; //map is square
+    	colStart -= numColDisp / 2;
+    	
+    	//in case cannot zoom out with current view as center
+    	if(rowStart < 0) {
+    		rowStart = 0;
+    	}
+    	if(rowStart + numRowDisp >= map.length) {
+    		rowStart = map.length - numRowDisp;
+    	}
+    	if(colStart < 0) {
+    		colStart = 0;
+    	}
+    	if(colStart + numColDisp >= 40) {
+    		colStart = 40 - numColDisp;
+    	}
+    }
+    
+    public void navUpdate(int x) {
+    	switch (x){
+    	case 1: //up
+    		rowStart = Math.max(0, rowStart - (numRowDisp / 2));
+    		break;
+    	case 2: //down
+    		rowStart = Math.min(map.length - numRowDisp, rowStart + (numRowDisp / 2));
+    		break;
+    	case 3: //left
+    		colStart = Math.max(0, colStart - (numColDisp / 2));
+    		break;
+    	case 4: //right
+    		colStart = Math.min(map.length - numColDisp, colStart + (numColDisp / 2));
+    		break;
+    	}
+    }
+    
     /**
      * Draw the full tileMap for the game.
      */
     public void drawMap() { //draw map
-        for (int row = 0; row < map.length; row++) {
-            for (int col = 0; col < map[row].length; col++) {
-                int sourcex = map[row][col];
+    	winTileSize = 16 * zoomRatio;  	
+    	
+        for (int row = 0; row < numRowDisp; row++) {
+        	//System.out.println("row " + row);
+            for (int col = 0; col < numColDisp; col++) {
+            	//System.out.println("col " + col);
+                int sourcex = map[row + rowStart][col + colStart];
                 int sourcey = 0;
                 if (sourcex >= (tile.getWidth() / tileSize)) {
                     sourcey++;
@@ -108,19 +168,19 @@ public class MapDrawer {
     public void drawItems(int boatX, int boatY, int axeX, int axeY) {
         //Draw the axe
         graphicsContext.drawImage(itemSprite, 0, 16, tileSize, tileSize,
-                (boatX * winTileSize), (boatY * winTileSize), winTileSize, winTileSize);
+                ((boatX - colStart) * winTileSize), ((boatY - rowStart) * winTileSize), winTileSize, winTileSize);
 
         //Draw the boat
         graphicsContext.drawImage(itemSprite, 16, 16, tileSize, tileSize,
-                (axeX * winTileSize), (axeY * winTileSize), winTileSize, winTileSize);
+                ((axeX - colStart) * winTileSize), ((axeY - rowStart) * winTileSize), winTileSize, winTileSize);
 
         graphicsContext.setStroke(Color.BLACK);
         if (isBoatHighlighted) {
-            graphicsContext.strokeRect(boatX * winTileSize, boatY * winTileSize, winTileSize, winTileSize);
+            graphicsContext.strokeRect((boatX - colStart) * winTileSize, (boatY - rowStart) * winTileSize, winTileSize, winTileSize);
 
         }
         if (isAxeHighlighted) {
-            graphicsContext.strokeRect(axeX * winTileSize, axeY * winTileSize, winTileSize, winTileSize);
+            graphicsContext.strokeRect((axeX - colStart) * winTileSize, (axeY - rowStart) * winTileSize, winTileSize, winTileSize);
         }
     }
 
@@ -140,7 +200,7 @@ public class MapDrawer {
         //Draw the diamonds
     	for(int i = 0; i < 15; i++) {
 	        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-	                (diamonds[i][1] * winTileSize), (diamonds[i][0] * winTileSize), winTileSize, winTileSize);
+	                ((diamonds[i][1] - colStart) * winTileSize), ((diamonds[i][0] - rowStart) * winTileSize), winTileSize, winTileSize);
     	}
     }
 
@@ -154,7 +214,7 @@ public class MapDrawer {
      */
     public boolean isClickable(int x, int y) {
     	boolean clickable = true;
-    	if(map[y][x] >= 20) //check for valid terrain
+    	if(map[y + rowStart][x + colStart] >= 20) //check for valid terrain
     		clickable = false;
         for(int i = 0; i < 15; i++) { //check for diamond tiles
         	if(x == diamonds[i][1] && y == diamonds[i][0])
