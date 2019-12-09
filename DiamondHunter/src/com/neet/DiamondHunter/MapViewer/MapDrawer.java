@@ -25,12 +25,18 @@ public class MapDrawer {
     private Image avatarSprite;
     private Image diamondSprite;
 
+    //window tile size
+    public int winTileSize = 16;
+    
     private int tileSize;
     private int[][] map;
     private int mapWidth;
     private int mapHeight;
     private boolean isAxeHighlighted;
     private boolean isBoatHighlighted;
+    
+    //diamond coordinates
+    private int diamonds[][] = {{20, 20}, {12, 36}, {28, 4}, {4, 34}, {28, 19}, {35, 26}, {38, 36}, {27, 28}, {20, 30}, {14, 25}, {4, 21}, {9, 14}, {4, 3}, {20, 14}, {13, 20}};
 
 
     /**
@@ -69,8 +75,8 @@ public class MapDrawer {
         }
 
         //Set canvas to dynamic
-        canvas.setWidth(mapWidth * 16);
-        canvas.setHeight(mapHeight * 16);
+        canvas.setWidth(mapWidth * winTileSize);
+        canvas.setHeight(mapHeight * winTileSize);
     }
 
     /**
@@ -86,7 +92,7 @@ public class MapDrawer {
                     sourcex = (int) (sourcex - tile.getWidth() / tileSize);
                 }
                 graphicsContext.drawImage(tile, sourcex * tileSize, sourcey * tileSize, tileSize, tileSize,
-                        col * tileSize, row * tileSize, tileSize, tileSize);
+                        col * winTileSize, row * winTileSize, winTileSize, winTileSize);
             }
         }
     }
@@ -102,19 +108,19 @@ public class MapDrawer {
     public void drawItems(int boatX, int boatY, int axeX, int axeY) {
         //Draw the axe
         graphicsContext.drawImage(itemSprite, 0, 16, tileSize, tileSize,
-                (boatX * tileSize), (boatY * tileSize), tileSize, tileSize);
+                (boatX * winTileSize), (boatY * winTileSize), winTileSize, winTileSize);
 
         //Draw the boat
         graphicsContext.drawImage(itemSprite, 16, 16, tileSize, tileSize,
-                (axeX * tileSize), (axeY * tileSize), tileSize, tileSize);
+                (axeX * winTileSize), (axeY * winTileSize), winTileSize, winTileSize);
 
         graphicsContext.setStroke(Color.BLACK);
         if (isBoatHighlighted) {
-            graphicsContext.strokeRect(boatX * tileSize, boatY * tileSize, 16, 16);
+            graphicsContext.strokeRect(boatX * winTileSize, boatY * winTileSize, winTileSize, winTileSize);
 
         }
         if (isAxeHighlighted) {
-            graphicsContext.strokeRect(axeX * tileSize, axeY * tileSize, 16, 16);
+            graphicsContext.strokeRect(axeX * winTileSize, axeY * winTileSize, winTileSize, winTileSize);
         }
     }
 
@@ -124,7 +130,7 @@ public class MapDrawer {
     public void drawAvatar() {
         //Draw the avatar
         graphicsContext.drawImage(avatarSprite, 0, 0, tileSize, tileSize,
-                (17 * tileSize), (17 * tileSize), tileSize, tileSize);
+                (17 * winTileSize), (17 * winTileSize), winTileSize, winTileSize);
     }
 
     /**
@@ -132,51 +138,10 @@ public class MapDrawer {
      */
     public void drawDiamonds() {
         //Draw the diamonds
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (20 * tileSize), (20 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (36 * tileSize), (12 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (4 * tileSize), (28 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (34 * tileSize), (4 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (19 * tileSize), (28 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (26 * tileSize), (35 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (36 * tileSize), (38 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (28 * tileSize), (27 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (30 * tileSize), (20 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (25 * tileSize), (14 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (21 * tileSize), (4 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (14 * tileSize), (9 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (3 * tileSize), (4 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (14 * tileSize), (20 * tileSize), tileSize, tileSize);
-
-        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
-                (20 * tileSize), (13 * tileSize), tileSize, tileSize);
-
+    	for(int i = 0; i < 15; i++) {
+	        graphicsContext.drawImage(diamondSprite, 0, 0, tileSize, tileSize,
+	                (diamonds[i][1] * winTileSize), (diamonds[i][0] * winTileSize), winTileSize, winTileSize);
+    	}
     }
 
 
@@ -220,6 +185,6 @@ public class MapDrawer {
      */
     public void drawCursorHighlight(int xCo, int yCo) {
         graphicsContext.setStroke(Color.CORAL);
-        graphicsContext.strokeRect(xCo * 16, yCo * 16, 16, 16);
+        graphicsContext.strokeRect(xCo * winTileSize, yCo * winTileSize, winTileSize, winTileSize);
     }
 }
