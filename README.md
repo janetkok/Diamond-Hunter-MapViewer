@@ -47,34 +47,56 @@ Admin can undo the previous steps applied by clicking the below button.
 Admin can zoom in and zoom out the map by clicking the below image respectively. After zooming it, admin can move around by using 'W' (Top), 'A' (Left), 'S'(Down) and 'D' (Right).
 
 ![Zoominout](Resources/ReadMe/ZoomInOut.png)
+
+<img src="Resources/ReadMe/zoomin.png" alt="zoomin" width="500" height="500" />
+<img src="Resources/ReadMe/zoomin2.png" alt="zoomin2" width="500" height="500" />
+<img src="Resources/ReadMe/zoomout.png" alt="zoomout" width="500" height="500" />
 ### 6) Information bar
 All the informations and updates show at the bottom blue bar.
 
 ![InformationBar](Resources/ReadMe/bar.png)
 
-### 7) Confirmation Dialog
-Confirmation dialog will pop up if admin leaves without saving his or her changes.
+### 7) Closing MapViewer - Confirmation Dialog
+Confirmation dialog will pop up if admin leaves without saving his or her changes. 
 
 ![ConfirmationWindows](Resources/ReadMe/confirmation.png)
-### 8) Warning Dialog
-Admin can only relocate the axes and the boat at a empty space. Once the admin relocates the items in a space which already filled, warning windows will pop up.
+### 8) Setting item location - Warning Dialog
+Admin can only relocate the axes and the boat at a empty space. Once the admin relocates the items in a space which is already filled, warning windows will pop up.
 
 ![WarningWindows](Resources/ReadMe/warning.png)
-### 9) Customized Map
-##### i) Load Map
-Load the map that already saved.
-##### ii) Save
-Update the last preserved map.
-##### iii) Save as
-Create a new map and save in local.
-##### iv) Save as default
-Save the map in local and set as default map
+### 9) Loading and Saving Map
 
 ![FileMenu](Resources/ReadMe/File.png)
+##### i) Load Map
+To edit a map that has been saved in some folder, click the load map menu item to load the map.
+
+![load_map](Resources/ReadMe/load_map.png)
+
+System will display filename of currently opened map at the top bar menu.
+
+![load_map_interface](Resources/ReadMe/load_map_interface.png)
+##### ii) Save
+Save map updates the existing opened map. If there isn't any saved file, it will automatically goes to the 'Save As' window.
+##### iii) Save as
+It creates a new map and saves in local directory. To save a newly created item map, click save as.
+
+![save_as](Resources/ReadMe/save_as.png)
+##### iv) Save as default
+Save as default saves the default map, a confirmation dialog alert will popup. The admin would need to confirm if he/she would like to set it as default.
+
+![default_map](Resources/ReadMe/default_map.png)
 ### 10) Help
 ##### i) Instruction
-All the functions and details are in the instruction windows.
+All the functions and details of system are displayed in the instruction windows.
+
+![instruction](Resources/ReadMe/instruction.png)
 ##### ii) About 
 Author 
 
+![about](Resources/ReadMe/about.png)
+
 ![HelpMenu](Resources/ReadMe/Help.png)
+### 11) Load Map in Game
+To use the default map, press 'Start'. To load the customized map, press 'Load Map' and continue pressing 'Start'.
+
+![menu](Resources/ReadMe/menu.png)
