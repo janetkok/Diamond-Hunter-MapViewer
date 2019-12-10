@@ -10,9 +10,9 @@ Both of the application are built into `.jar` files and placed into the [bin/](b
 
 ### Running Diamond Hunter
 
-To run Diamond Hunter, open and start up [Diamond-Hunter.jar](bin/Diamond-Hunter.jar) and the game should be launched.
+To run Diamond Hunter, open and start up [DiamondHunter.jar](bin/DiamondHunter.jar) and the game should be launched.
 
-Windows user might encounter a problem with directly running [Diamond-Hunter.jar](bin/Diamond-Hunter.jar), normally with the game getting stuck at the menu. In that case, open up your command prompt(`cmd`), and make sure your current directory contains the Jar file (default location of the jar files will be in [bin/Diamond-Hunter.jar](bin/Diamond-Hunter.jar)), then type in the command `java -jar Diamond-Hunter.jar` in the command prompt to run it instead.
+Windows user might encounter a problem with directly running [DiamondHunter.jar](bin/DiamondHunter.jar), normally with the game getting stuck at the menu. In that case, open up your command prompt(`cmd`), and make sure your current directory contains the Jar file (default location of the jar files will be in [bin/Diamond-Hunter.jar](bin/Diamond-Hunter.jar)), then type in the command `java -jar DiamondHunter.jar` in the command prompt to run it instead.
 
 If you are running Diamond Hunter from the source code, simply run [com.neet.DiamondHunter.Main.Game.main()](src/com/neet/DiamondHunter/Main/Game.java) to start the application.
 
