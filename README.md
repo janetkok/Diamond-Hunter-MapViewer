@@ -78,11 +78,11 @@ System will display filename of currently opened map at the top bar menu.
 ##### ii) Save
 Save map updates the existing opened map. If there isn't any saved file, it will automatically goes to the 'Save As' window.
 ##### iii) Save as
-It creates a new map and saves in local directory. To save a newly created item map, click save as.
+To save a newly created item map in local directory, click save as.
 
 ![save_as](Resources/ReadMe/save_as.png)
 ##### iv) Save as default
-Save as default saves the default map, a confirmation dialog alert will popup. The admin would need to confirm if he/she would like to set it as default.
+Save as default saves the map as default map, a confirmation dialog box will popup. The admin would need to confirm if he/she would like to set it as default.
 
 ![default_map](Resources/ReadMe/default_map.png)
 ### 10) Help
