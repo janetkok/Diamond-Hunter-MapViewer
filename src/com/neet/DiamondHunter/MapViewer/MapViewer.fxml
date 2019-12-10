@@ -60,22 +60,22 @@
                <Font size="16.0" />
             </font>
          </Text>
-         <Text layoutX="46.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1)Load Map: Load the map that save before">
+         <Text layoutX="46.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1)Load Map: To edit a map that is already saved, load the map">
             <font>
                <Font size="16.0" />
             </font>
          </Text>
-         <Text layoutX="46.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2)Save: Update the last preserved map">
+         <Text layoutX="46.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2)Save: Updates existing opened map">
             <font>
                <Font size="16.0" />
             </font>
          </Text>
-         <Text layoutX="46.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3)Save as: Create a new map and save in local">
+         <Text layoutX="46.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="3)Save as: To save a newly created item map">
             <font>
                <Font size="16.0" />
             </font>
          </Text>
-         <Text layoutX="46.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4)Save as default: Save the map in local and set as default map">
+         <Text layoutX="46.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4)Save as default: Save it in local and set as default map">
             <font>
                <Font size="16.0" />
             </font>
